@@ -17,5 +17,3 @@ public class T2_indexOf {
 		System.out.println("6.msg1에 'o'문자가 있는가? " + msg1.lastIndexOf("o"));  // 뒤에서 부터 찾으나, 인덱스값은 절대값
 	}
 }
-
-//값을 입력받아서 두번째 세번째 글자를 찾는법
