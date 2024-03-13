@@ -1,6 +1,6 @@
-package api2_String;
+package api4_String;
 
-public class T1_trim {  // 바깥쪽 공백무시
+public class T01_trim {  // 바깥쪽 공백무시
 	public static void main(String[] args) {
 		String str1 = " 안    녕   ";
 		String res;
