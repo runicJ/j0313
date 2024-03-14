@@ -41,7 +41,7 @@ public class T08_valueOf {  // 형변환
 		String str5 = String.valueOf(a1) + String.valueOf(a2);
 		System.out.println(str5);
 		
-		//int res6 = (int) (String.valueOf(a1)) + (int) (String.valueOf(a2));
+		//int res6 = (int) (String.valueOf(a1)) + (int) (String.valueOf(a2)); // X
 		int res6 = Integer.parseInt(String.valueOf(a1)) + Integer.parseInt(String.valueOf(a2));  //wrapper class
 		System.out.println("res6 : " + res6);
 	}	
