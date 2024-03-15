@@ -3,34 +3,36 @@ package api9_format;
 import java.util.regex.Pattern;
 
 // 문자열 정규식...('?'는 0번이나 1번, '+'는 1번이상, '*'는 0번 이상)
-public class Test4 {
+// w는 영문대소문자/숫자/_(밑줄) 허용
+public class Test5 {
 	public static void main(String[] args) {
-		String regEx1 = "^[abc]*$";  // a 또는 b 또는 c문자가 포함? // = ^[a|b|c]*$  // 처음이나 끝에 abc가 있어야함
-		String regEx2 = "^[a-z]+$";  // 영문 소문자만 1번 이상. ctrl + shift + '[' : 화면분할  // 1번이상 +  // 0번이나 1번 ?
-		String regEx3 = "^[A-Z]+$";  // 영문 대문자만 1번 이상.
-		String regEx4 = "^[a-zA-Z]*$";  // 영문 대/소문자 0번 이상.
-		String regEx5 = "^[가-힣]*$";  // 영문 대/소문자 0번 이상.
-		String regEx6 = "^[a-zA-Z가-힣]*$";  // 영문 대/소문자/한글만 0번 이상.
-		String regEx7 = "^[a-zA-Z가-힣 ]*$";  // 영문 대/소문자/한글/공백 0번 이상.
-		String regEx8 = "^[a-zA-Z가-힣0-9 ]*$";  // 영문 대/소문자/한글/공백/숫자 0번 이상.
-		String regEx9 = "^[a-zA-Z가-힣0-9_-]*$";  // 영문 대/소문자/한글/공백/숫자 0번 이상.
+		String regEx1 = "^[a-zA-z0-9_-]+@[a-zA-Z0-9]+\\.[a-z]+$";  // \\. 제어코드가 아님을 알림
+		String regEx2 = "^[a-zA-z0-9_-]{3}@[a-zA-Z0-9]+\\.[a-z]+$";  // + 반복 {} 길이제한
+		String regEx3 = "^[a-zA-z0-9_-]{3,12}@[a-zA-Z0-9]+\\.[a-z]+$";  // + 반복 {} 길이제한
+		String regEx4 = "^[a-zA-z0-9_-]{3,12}@[a-zA-Z0-9]+\\.[a-z]+\\.[a-z]*$";
+		String regEx5 = "^[a-zA-z0-9_-]{3,12}@[a-zA-Z0-9]+\\.[a-z]+(\\.[a-z])*$";  // ???
+		String regEx6 = "^[a-zA-z0-9_-]{3,12}@[a-zA-Z0-9]+(\\.[a-z]+)+$";          // O
+		String regEx7 = "\\w+@\\w+\\.\\w+";
+		String regEx8 = "\\w+@[a-zA-Z0-9]+\\.[a-z]+";
+		String regEx9 = "\\w{3,}@[a-zA-Z0-9]{1,8}\\.[a-z]{1,4}";
+		String regEx10 = "\\w{3,}@[a-zA-Z0-9]{1,8}(\\.[a-z]{1,4})+";
 		
 		String str00 = "";
-		String str01 = "1234";
-		String str02 = "1234ghjk";
-		String str03 = "a";
-		String str04 = "bc";
-		String str05 = "asdc";
-		String str06 = "AS-DF";
-		String str07 = "asDf";
-		String str08 = "abcsDf";
-		String str09 = "abc   ";  // 공백(Space)
-		String str10 = "abc		";  // 탭(Tab)
-		String str11 = "ㄱ";		
-		String str12 = "그린컴퓨터";
-		String str13 = "그린 컴퓨터";
-		String str14 = "그린 Computer";
-		String str15 = "그린2_Computer2";
+		String str01 = "atom@naver.com";
+		String str02 = "atom1234@naver.com";
+		String str03 = "atom_1234@naver.com";
+		String str04 = "atom!1234@naver.com";
+		String str05 = "atom 1234@naver.com";
+		String str06 = "atOM12312431451412341@naver.com";
+		String str07 = "a@naver.com";
+		String str08 = "at_OM1234@naver.com";
+		String str09 = "atom@naver.co.kr";
+		String str10 = "_at-om@naver.co.kr";
+		String str11 = "_at-om@naver.COM";
+		String str12 = "_at-om@naver!.COM";
+		String str13 = "_atom@na_ver.com";
+		String str14 = "_at-om@na_ver1234.com";
+		String str15 = "atom@naverasdkjf";
 		
 		System.out.println("1:00= " + Pattern.matches(regEx1, str00));
 		System.out.println("1:01= " + Pattern.matches(regEx1, str01));
@@ -67,7 +69,7 @@ public class Test4 {
 		System.out.println("2:14= " + Pattern.matches(regEx2, str14));
 		System.out.println("2:15= " + Pattern.matches(regEx2, str15));
 		System.out.println();
-		
+	
 		System.out.println("3:00= " + Pattern.matches(regEx3, str00));
 		System.out.println("3:01= " + Pattern.matches(regEx3, str01));
 		System.out.println("3:02= " + Pattern.matches(regEx3, str02));
@@ -85,7 +87,7 @@ public class Test4 {
 		System.out.println("3:14= " + Pattern.matches(regEx3, str14));
 		System.out.println("3:15= " + Pattern.matches(regEx3, str15));
 		System.out.println();
-		
+	
 		System.out.println("4:00= " + Pattern.matches(regEx4, str00));
 		System.out.println("4:01= " + Pattern.matches(regEx4, str01));
 		System.out.println("4:02= " + Pattern.matches(regEx4, str02));
@@ -192,6 +194,24 @@ public class Test4 {
 		System.out.println("9:13= " + Pattern.matches(regEx9, str13));
 		System.out.println("9:14= " + Pattern.matches(regEx9, str14));
 		System.out.println("9:15= " + Pattern.matches(regEx9, str15));
+		System.out.println();		
+		
+		System.out.println("10:00= " + Pattern.matches(regEx10, str00));
+		System.out.println("10:01= " + Pattern.matches(regEx10, str01));
+		System.out.println("10:02= " + Pattern.matches(regEx10, str02));
+		System.out.println("10:03= " + Pattern.matches(regEx10, str03));
+		System.out.println("10:04= " + Pattern.matches(regEx10, str04));
+		System.out.println("10:05= " + Pattern.matches(regEx10, str05));
+		System.out.println("10:06= " + Pattern.matches(regEx10, str06));
+		System.out.println("10:07= " + Pattern.matches(regEx10, str07));
+		System.out.println("10:08= " + Pattern.matches(regEx10, str08));
+		System.out.println("10:09= " + Pattern.matches(regEx10, str09));
+		System.out.println("10:10= " + Pattern.matches(regEx10, str10));
+		System.out.println("10:11= " + Pattern.matches(regEx10, str11));
+		System.out.println("10:12= " + Pattern.matches(regEx10, str12));
+		System.out.println("10:13= " + Pattern.matches(regEx10, str13));
+		System.out.println("10:14= " + Pattern.matches(regEx10, str14));
+		System.out.println("10:15= " + Pattern.matches(regEx10, str15));
 		System.out.println();		
 	}
 }
